@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1 style="font-weight: bold"> 
+  <h1 style="font-weight: bold">
     TODO list
     <a href="{% url 'todo_list:task-create' %}" class="btn btn-primary link-to-page">
       Create new task
@@ -12,18 +12,26 @@
     {% for task in tasks %}
       <tr>
         <td>
-          <p class="h4">{{ task.content }} {{ task.is_done|yesno:"Done,Not done" }}</p>
-          <p>{{ task.created_at }} 
+          <p class="h4">
+            {{ task.content }} {{ task.is_done|yesno:"Done,Not done" }}
+          </p>
+          <p>{{ task.created_at }}
             {% if task.deadline %}
-            	{{ task.deadline }}
+              {{ task.deadline }}
             {% endif %}
           </p>
           <p>
-            Tags: 
+            Tags:
             {% for tag in task.tags.all %}
-            	{{ tag.name }}
-            {% endfor %}            
-          </p>          
+              {{ tag.name }}
+            {% endfor %}
+            <a href="{% url 'todo_list:task-update' pk=task.id %}" class="btn btn-primary">
+              Update
+            </a>
+            <a href="{% url 'todo_list:task-delete' pk=task.id %}" class="btn btn-danger">
+              Delete
+            </a>
+          </p>
         </td>
       </tr>
     {% endfor %}

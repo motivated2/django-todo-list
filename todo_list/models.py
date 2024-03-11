@@ -14,6 +14,9 @@ class Task(models.Model):
         related_name="tasks",
     )
 
+    class Meta:
+        ordering = ["is_done", "-created_at"]
+
     def __str__(self):
         return f"{self.content} {self.is_done}"
 

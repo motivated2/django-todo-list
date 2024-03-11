@@ -1,2 +1,4 @@
 .idea
 venv
+django_todo_list/__pycache__/
+db.sqlite3

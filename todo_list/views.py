@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
@@ -7,7 +8,7 @@ from todo_list.models import Task
 
 
 def index(request):
-    tasks = Task.objects.all()
+    tasks = Task.objects.prefetch_related("tags")
     context = {
         "tasks": tasks
     }
@@ -36,3 +37,13 @@ class TaskUpdateView(UpdateView):
 class TaskDeleteView(DeleteView):
     model = Task
     success_url = reverse_lazy("todo_list:index")
+
+
+def toggle_task_is_done(request, pk):
+    task = Task.objects.get(id=pk)
+    if task.is_done:
+        task.is_done = False
+    else:
+        task.is_done = True
+    task.save()
+    return HttpResponseRedirect(reverse_lazy("todo_list:index"))

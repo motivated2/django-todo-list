@@ -14,6 +14,12 @@ class Task(models.Model):
         related_name="tasks",
     )
 
+    def __str__(self):
+        return f"{self.content} {self.is_done}"
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=63)
+
+    def __str__(self):
+        return self.name

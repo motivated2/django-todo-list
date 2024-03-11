@@ -13,13 +13,15 @@
       <tr>
         <td>
           <p class="h4">
-            {{ task.content }} {{ task.is_done|yesno:"Done,Not done" }}
+            {{ task.content }}
 
             {% if task.is_done %}
+              <span class="success">Done</span>
               <a href="{% url 'todo_list:toggle-task-is-done' pk=task.id %}" class="btn btn-danger link-to-page">
                 Undo
               </a>
             {% else %}
+              <span class="danger">Not done</span>
               <a href="{% url 'todo_list:toggle-task-is-done' pk=task.id %}" class="btn btn-success link-to-page">
                 Complete
               </a>
@@ -28,7 +30,7 @@
           </p>
           <p>{{ task.created_at }}
             {% if task.deadline %}
-              {{ task.deadline }}
+              - <span class="danger">{{ task.deadline }}</span>
             {% endif %}
           </p>
           <p>

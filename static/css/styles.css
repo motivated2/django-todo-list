@@ -10,3 +10,11 @@ h1 {
     float: right;
     margin: 0 2px 0 2px;
 }
+.danger {
+    color: red;
+    font-weight: bold;
+}
+.success {
+    color: green;
+    font-weight: bold;
+}

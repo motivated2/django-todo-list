@@ -1,6 +1,12 @@
 body {
     margin-top: 20px;
 }
+
 h1 {
     font-weight: bold;
+}
+
+.link-to-page {
+    float: right;
+    margin: 0 2px 0 2px;
 }

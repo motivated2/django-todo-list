@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1 style="font-weight: bold"> TODO list</h1>
+  <h1 style="font-weight: bold"> 
+    TODO list
+    <a href="{% url 'todo_list:task-create' %}" class="btn btn-primary link-to-page">
+      Create new task
+    </a>
+  </h1>
   <table class="table">
 
     {% for task in tasks %}

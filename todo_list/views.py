@@ -9,15 +9,9 @@ from todo_list.models import Task, Tag
 
 def index(request):
     tasks = Task.objects.prefetch_related("tags")
-    context = {
-        "tasks": tasks
-    }
+    context = {"tasks": tasks}
 
-    return render(
-        request,
-        "todo_list/index.html",
-        context=context
-    )
+    return render(request, "todo_list/index.html", context=context)
 
 
 class TaskCreateView(CreateView):

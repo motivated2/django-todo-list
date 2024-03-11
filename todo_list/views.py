@@ -51,4 +51,15 @@ def toggle_task_is_done(request, pk):
 
 class TagListView(ListView):
     model = Tag
-    success_url = reverse_lazy("todo_list:")
+
+
+class TagCreateView(CreateView):
+    model = Tag
+    fields = ["name"]
+    success_url = reverse_lazy("todo_list:tag-list")
+
+
+class TagUpdateView(UpdateView):
+    model = Tag
+    fields = ["name"]
+    success_url = reverse_lazy("todo_list:tag-list")

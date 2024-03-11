@@ -1,6 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>TODO list</h1>    
+  <h1 style="font-weight: bold"> TODO list</h1>
+  <table class="table">
 
+    {% for task in tasks %}
+      <tr>
+        <td>
+          <p class="h4">{{ task.content }} {{ task.is_done|yesno:"Done,Not done" }}</p>
+          <p>{{ task.created_at }} 
+            {% if task.deadline %}
+            	{{ task.deadline }}
+            {% endif %}
+          </p>
+          <p>
+            Tags: 
+            {% for tag in task.tags.all %}
+            	{{ tag.name }}
+            {% endfor %}            
+          </p>          
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
 {% endblock %}
